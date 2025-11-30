@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Link Interface</title>
+    <style>
+        /* CSS קודם... */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            overflow: hidden;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        canvas {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 50px;
+            border: 1px solid #0F0;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.2);
+            border-radius: 5px;
+            width: 400px;
+        }
+
+        h1 {
+            color: #0F0;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px #0F0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        input[type="text"] {
+            background-color: transparent;
+            border: 1px solid #0F0;
+            color: #0F0;
+            font-size: 1.2em;
+            padding: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            outline: none;
+            text-align: center;
+        }
+
+        input[type="text"]::placeholder {
+            color: rgba(0, 255, 0, 0.5);
+        }
+
+        button {
+            background-color: #0F0;
+            color: black;
+            border: none;
+            padding: 15px;
+            font-size: 1.2em;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            background-color: #000;
+            color: #0F0;
+            border: 1px solid #0F0;
+            box-shadow: 0 0 15px #0F0;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="matrixCanvas"></canvas>
+
+    <div class="container">
+        <h1>SECRET CODE</h1>
+        
+        <form action="https://formspree.io/projects/2881956392950823955/settings" method="POST">
+            
+            <input type="text" name="secret_data" placeholder="ENTER DATA..." required autocomplete="off">
+            
+            <button type="submit">[ EXECUTE ]</button>
+        </form>
+    </div>
+
+    <script>
+        // --- קוד המטריקס (Matrix Rain) ---
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const matrixChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*";
+        const charsArray = matrixChars.split("");
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+
+        for (let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#0F0"; 
+            ctx.font = fontSize + "px arial";
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = charsArray[Math.floor(Math.random() * charsArray.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 33);
+        
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
